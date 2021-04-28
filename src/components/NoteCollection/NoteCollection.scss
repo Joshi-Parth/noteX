@@ -1,0 +1,82 @@
+.notecollection{
+    height: 100%;
+    width: 380px;
+    max-width: 670px;
+    min-width: 196px;
+    color: #fff;
+    background: #1A1A1A;
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    .notecollection-header{
+        padding: 5px 25px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100px;
+        box-sizing: border-box;
+        border-bottom: 1px solid rgb(34, 34, 34);
+        .notecollection-title{
+            width: 100%;
+            flex: 1;
+            h1{
+                margin: 15px 0 20px;
+                font-weight: 500;
+                font-size: 20px;
+            }
+        }
+        .notecollection-subtitle{
+            width: 100%;
+            margin: 5px;
+            font-size: 14px;
+        }
+    }
+    .notecollection-body{
+        flex: 1;
+        overflow: auto;
+        .note-card{
+            height: 120px;
+            padding: 20px 25px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #2f2f2f;
+            text-decoration: none;
+            .note-card-head{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                flex: 1;
+                font-size: 15px;
+                .note-card-title{
+                    width: 100%;
+                    color: #fff;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .note-card-desc{
+                    width:100%;
+                    color: #fff;
+                    font-weight: 400;
+                    margin-top: 10px;
+                    white-space: nowrap;
+                }
+            }
+
+            .note-card-date{
+                color: #878686;
+                font-size: 12px;
+            }
+            &:hover{
+                cursor: pointer;
+                background: #262626;
+            }
+            &:active{
+                background: #262626;
+            }
+        }
+    }
+}

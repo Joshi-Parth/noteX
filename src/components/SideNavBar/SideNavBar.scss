@@ -1,0 +1,130 @@
+.sidenavbar{
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    height: 100%;
+    color: #ccc;
+    background: #000;
+
+
+    .sidenavbar-top-header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        .profile-icon{
+            background: #f8cbad;
+            width: 30px;
+            height: 30px;
+            border-radius: 50px;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .profile-name{
+            display: flex;
+            align-items: center;
+            flex: 1;
+            margin-left: 20px;
+        }
+        .profile-arrow-down{
+            margin: 0 10px;
+            font-size: 20px;
+        }
+    }
+
+
+    .sidenavbar-search-bar{
+        padding: 15px;
+        .search-block{
+            display: flex;
+            align-items: center;
+            background: #404040;
+            padding: 8px 10px;
+            border-radius: 50px;
+            .icon{
+                font-size: 20px;
+            }
+            input{
+                color: white;
+                background: none;
+                outline: none;
+                border: none;
+                margin-left: 12px;
+            }
+        }
+    }
+
+    .sidenavbar-button{
+        padding: 0 15px;
+        color: #fff;
+        .buttonblock{
+            display: flex;
+            align-items: center;
+            background: hsla(276, 100%, 50%, 0.68);
+            padding: 8px 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            .icon{
+                font-size: 20px;
+            }
+            .title{
+                margin-left: 10px;
+                background: none;
+                outline: none;
+                border: none;
+                color: #fff;
+                cursor: pointer;
+                
+            }
+            &:hover{
+                background:hsla(278, 95%, 32%, 0.802);
+                cursor: pointer;
+            }
+        }
+    }
+
+    .sidenavbar-menu-items{
+        margin-top: 20px;
+        ul{
+            li{
+                a{
+                    display: flex;
+                    align-items: center;
+                    padding: 10px 18px;
+                    color: #ccc;
+                    text-decoration: none;
+                    .icon{
+                        font-size: 16px;
+                        margin-right: 8px;
+                    }
+                    &:hover{
+                        cursor: pointer;
+                        background: #404040;
+                    }
+                    &:active{
+                        background: #404040;
+                    }
+                    }
+                
+                
+            }
+        }
+    }
+
+    .sidenavbar-bottom{
+        border-top: 1px solid #555;
+        padding: 8px 15px;
+        .sidenavbar-need-help{
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            .icon{
+                font-size: 16px;
+                margin-right: 10px;
+            }
+        }
+    }
+
+}
