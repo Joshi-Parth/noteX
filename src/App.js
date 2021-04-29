@@ -8,7 +8,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { useState, useReducer } from 'react';
+import {  useReducer } from 'react';
 
 const initialState = [];
 
@@ -30,11 +30,11 @@ const NoteReducer = (state, action) => {
 
 function App() {
 
-  const [notes, notesDispatch] = useReducer(NoteReducer, initialState);
+  const [notes, dispatch] = useReducer(NoteReducer, initialState);
 
   return (
     <Router>
-      <NotesContext.Provider value={{notesState: notes, notesDispatch }}>
+      <NotesContext.Provider value={{notesState: notes, dispatch }}>
         <div className="App">
           <SideNavBar />
           <Switch>

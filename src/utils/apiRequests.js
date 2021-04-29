@@ -1,22 +1,31 @@
 import firebase from '../firebase'
 
-const db = firebase.collection('notes');
+const notesRef = firebase.collection('notes');
 
 
 const getAll = () => {
-    return db;
+     notesRef.onSnapshot((snapshot) => {
+        const data = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        console.log("All data in 'notes' collection", data);
+        return data;
+      });
+    
+      
 }
 
 const create = (data) => {
-    return db.add(data);
+    return notesRef.add(data);
 }
 
 const update = (id, value) => {
-    return db.doc(id).update(value);
+    return notesRef.doc(id).update(value);
 }
 
 const remove = (id) => {
-    return db.doc(id).delete();
+    return notesRef.doc(id).delete();
 }
 
 const DataService = {

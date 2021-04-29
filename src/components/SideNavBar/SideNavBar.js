@@ -10,58 +10,8 @@ function SideNavBar() {
     const notesContext = useContext(NotesContext);
     const history = useHistory();
     const [error, setError] = useState(null);
-//    const [notes , setNote] = useState({
-//        title: "",
-//        description: "",
-//        date: ""
-//    })
 
-//     const handleCreateNote =  () => {
-//         // e.preventDefault();
-
-//         setNote({
-//             title: "Untitled",
-//             description: "Start Writing",
-//             date: Date.now()
-//         })
-        
-//         db.collection("notes").add({
-//             title: notes.title,
-//             description: notes.description,
-//             date: notes;
-//         })
-//         .then((docRef) => {
-//             console.log("Document written with ID: ", docRef.id);
-//         })
-//         .catch((error) => {
-//             console.error("Error adding document: ", error);
-//         });
-//         // const db = firebase.firestore();
-//         // db.settings({
-//         //     timestampsInSnapshots: true
-//         // });
-//         // const userRef = db.collection("notes").add({
-//         //     title: title,
-//         //     description: description
-//         // });
-//         setTitle('');
-//         setDescription('');
-//         setDate(Date.toLocaleString());
-//     }
     const handleCreateNote = () => {
-        // db.collection("notes").add({
-        //     title: "Untitled",
-        //     description: "",
-        //     createdAt: Date.now(),
-        //     updatedAt: Date.now(),
-        //     archive: false
-        // })
-        // .then((res) => {
-        //     console.log(res.id);
-        // })
-        // .catch((error) => {
-        //     console.error("Error adding document: ", error);
-        // });
         let data = {
                 title: "Untitled",
                 description: "",
@@ -69,16 +19,21 @@ function SideNavBar() {
                 updatedAt: Date.now(),
                 archive: false
         }
-        DataService.create(data)
-        .then((res) => {
-            console.log(res.id);
-            notesContext.notesDispatch({type: 'createNoteSuccess', payload: data });
+        const response = DataService.create(data);
+        console.log(response.id);
+        
+        if(response.error){
+            setError(response.error);
+            return false;
+        }
+
+        if(response.id){
+            notesContext.dispatch({type:'createNoteSuccess' , payload: data});
             history.push({
-                pathname: `/all-notes/${res.id}`,
+                pathname: `/all-notes/${response.id}`,
                 note: data
             })
-        })
-        .catch(err => setError(err));
+        }
     }
 
 
@@ -89,7 +44,7 @@ function SideNavBar() {
                     P
                 </div>
                 <div className="profile-name">
-                    Parth Joshi
+                    Krutika Joshi
                 </div>
                 <div className="profile-arrow-down">
                     <FontAwesomeIcon icon={faAngleDown} />
