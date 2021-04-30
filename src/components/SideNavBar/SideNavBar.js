@@ -5,35 +5,80 @@ import './SideNavBar.scss'
 import { NavLink , useHistory} from 'react-router-dom'
 import DataService from '../../utils/apiRequests'
 import { NotesContext } from '../../context/context'
+import firebase from '../../firebase'
+
+const notesRef = firebase.collection('notes');
 
 function SideNavBar() {
     const notesContext = useContext(NotesContext);
     const history = useHistory();
     const [error, setError] = useState(null);
-
+    
+    
+    
     const handleCreateNote = () => {
-        let data = {
-                title: "Untitled",
-                description: "",
-                createdAt: Date.now(),
-                updatedAt: Date.now(),
-                archive: false
-        }
-        const response = DataService.create(data);
-        console.log(response.id);
-        
-        if(response.error){
-            setError(response.error);
-            return false;
+        // let data = {
+        //         title: "Untitled",
+        //         description: "",
+        //         createdAt: Date.now(),
+        //         updatedAt: Date.now(),
+        //         archive: false
+        // }
+
+        // const getCreateData = () => {
+        //     DataService.create(data).then(res => {
+        //     res.onSnapshot(snapshot => {
+        //             setResponse({
+        //             id: snapshot.id,
+        //             ...snapshot.data()
+        //         })
+        //     })
+        // });}
+        // const response = await notesRef.add({
+        //         title: "Untitled",
+        //         description: "",
+        //         createdAt: Date.now(),
+        //         updatedAt: Date.now(),
+        //         archive: false
+        // }).then((ref) => {
+        //     ref.onSnapshot(snapshot => {
+        //         console.log({
+        //             id: snapshot.id,
+        //             ...snapshot.data()
+        //         })
+        //     });
+        // });
+
+        let response = {
+            title: "Untitled",
+            description: "",
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+            archive: false,
+            isTrash: false
         }
 
-        if(response.id){
-            notesContext.dispatch({type:'createNoteSuccess' , payload: data});
-            history.push({
-                pathname: `/all-notes/${response.id}`,
-                note: data
-            })
-        }
+        notesRef.add(response)
+        .then((docRef) => {
+            response.id = docRef.id;
+        })
+        .catch((error) => {
+            console.log(error);
+            setError(error);
+            return false;
+        })
+
+        
+        // if(response.id){
+        //     notesContext.dispatch({type:'createNoteSuccess' , payload: response});
+        //     console.log(response.id);
+        //     history.push({
+        //         pathname: `/all-notes/${response.id}`,
+        //         note: response
+        //     })
+        // }
+
+        
     }
 
 
@@ -44,7 +89,7 @@ function SideNavBar() {
                     P
                 </div>
                 <div className="profile-name">
-                    Krutika Joshi
+                    Parth Joshi
                 </div>
                 <div className="profile-arrow-down">
                     <FontAwesomeIcon icon={faAngleDown} />

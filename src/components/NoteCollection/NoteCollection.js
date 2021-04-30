@@ -3,22 +3,23 @@ import './NoteCollection.scss'
 import { useHistory, useRouteMatch  } from 'react-router';
 import { NotesContext } from '../../context/context'
 import firebase from '../../firebase'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useParams} from 'react-router-dom'
+import {collectionFormatDate} from '../../utils/helpers'
+import Note from '../Note/Note';
 
-const notesRef = firebase.collection('notes');
+
+const notesRef = firebase.collection('notes').orderBy("updatedAt", "desc");
 
 function NoteCollection(props) {
     const {title} = props;
+    const param = useParams();
     const [error, setError] = useState(null);
     const notesContext = useContext(NotesContext);
     const match = useRouteMatch();
     const history = useHistory();
-    
-    
-    
-    const getNotes = async () => {
-        
-        let getAllNotes = notesRef.where("archive", "==" , match.url === '/all-notes' ? false : true)
+
+    useEffect(() => {
+        let getAllNotes = notesRef.where("archive", "==" , match.url === '/all-notes' ? false : true )
             .onSnapshot((snapshot) => {
             let response = [];
             snapshot.docs.forEach((doc) => (
@@ -29,10 +30,14 @@ function NoteCollection(props) {
 
             if(response.error){
                 setError(response.error);
+                return false;
             }
 
+            
+
+            notesContext.dispatch({type: 'getAllNotesSuccess', payload: response});
             if(response.length > 0){
-                notesContext.dispatch({type: 'getAllNotesSuccess', payload: response});
+                
                 history.push({
                     pathname: `${match.url}/${response[0].id}`,
                     note: response[0]
@@ -40,14 +45,19 @@ function NoteCollection(props) {
             }
         });
         return () => getAllNotes();
-    }
+    },[match.url])
+    
+    
+    
+    
+        
+        
+        
 
     
     
     
-    useEffect(() => {
-        getNotes();
-    },[match.url])
+    
 
     
     return (
@@ -83,7 +93,7 @@ function NoteCollection(props) {
                                 </div>
                             </div>
                             <div className="note-card-date">
-                                {note.updatedAt}
+                                {collectionFormatDate(note.updatedAt)}
                             </div>
                             
                         </NavLink>

@@ -8,7 +8,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import {  useReducer } from 'react';
+import {  useReducer, useState } from 'react';
 
 const initialState = [];
 
@@ -16,10 +16,13 @@ const NoteReducer = (state, action) => {
   let draftNotes = [...state];
   switch(action.type){
     case 'getAllNotesSuccess':
-      return action.payload;
-    case 'createNoteSuccess':
-      draftNotes.unshift(action.payload);
+      return action.payload; 
+    case 'updatedNoteSuccess':
+      let index = state.findIndex(item => item.id === action.id);
+      draftNotes[index] = { ...draftNotes[index], ...action.payload };
       return draftNotes;
+    case 'archiveNoteSuccess':
+      return draftNotes.filter((item) => item.id !== action.id);
     default:
       return state;
     
@@ -31,6 +34,8 @@ const NoteReducer = (state, action) => {
 function App() {
 
   const [notes, dispatch] = useReducer(NoteReducer, initialState);
+
+
 
   return (
     <Router>
