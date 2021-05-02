@@ -121,17 +121,7 @@ function Note() {
         }
     }, [location.note])
 
-    useEffect(() => {
-        if (notesContext.notesState.length > 0) {
-            const [selectednote] = notesContext.notesState.filter((e) => e.id === params.id);
-            if (selectednote) {
-                setTitle(selectednote.title)
-                setDescription(selectednote.description)
-                setUpdatedAt(selectednote.updatedAt)
-                setArchive(selectednote.archive)
-            }
-        }
-    }, [notesContext.notesState])
+    
 
 
     return ( 

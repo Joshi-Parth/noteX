@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDown, faSearch, faPlus, faStar, faTrash, faStickyNote, faInfo} from '@fortawesome/free-solid-svg-icons'
+import { faAngleDown, faSearch, faPlus, faStar, faTrash, faStickyNote, faInfo, faClock, faList} from '@fortawesome/free-solid-svg-icons'
 import './SideNavBar.scss'
 import { NavLink , useHistory} from 'react-router-dom'
 import DataService from '../../utils/apiRequests'
@@ -17,37 +17,6 @@ function SideNavBar() {
     
     
     const handleCreateNote = () => {
-        // let data = {
-        //         title: "Untitled",
-        //         description: "",
-        //         createdAt: Date.now(),
-        //         updatedAt: Date.now(),
-        //         archive: false
-        // }
-
-        // const getCreateData = () => {
-        //     DataService.create(data).then(res => {
-        //     res.onSnapshot(snapshot => {
-        //             setResponse({
-        //             id: snapshot.id,
-        //             ...snapshot.data()
-        //         })
-        //     })
-        // });}
-        // const response = await notesRef.add({
-        //         title: "Untitled",
-        //         description: "",
-        //         createdAt: Date.now(),
-        //         updatedAt: Date.now(),
-        //         archive: false
-        // }).then((ref) => {
-        //     ref.onSnapshot(snapshot => {
-        //         console.log({
-        //             id: snapshot.id,
-        //             ...snapshot.data()
-        //         })
-        //     });
-        // });
 
         let response = {
             title: "Untitled",
@@ -67,16 +36,6 @@ function SideNavBar() {
             setError(error);
             return false;
         })
-
-        
-        // if(response.id){
-        //     notesContext.dispatch({type:'createNoteSuccess' , payload: response});
-        //     console.log(response.id);
-        //     history.push({
-        //         pathname: `/all-notes/${response.id}`,
-        //         note: response
-        //     })
-        // }
 
         
     }
@@ -114,24 +73,24 @@ function SideNavBar() {
             <div className="sidenavbar-menu-items">
                 <ul>
                     <li>
-                        <NavLink to="/dummy-1">
-                            <FontAwesomeIcon icon={faStar} className='icon' /> Dummy 
-                        </NavLink>
-                    </li>
-                    <li>
                         <NavLink to="/all-notes">
                             <FontAwesomeIcon icon={faStickyNote} className='icon' /> All Notes
                         </NavLink>
                         
                     </li>
                     <li>
-                        <NavLink to="/dummy-2">
-                            <FontAwesomeIcon icon={faStar} className='icon' /> Dummy 
+                        <NavLink to="/trash">
+                            <FontAwesomeIcon icon={faTrash} className='icon' /> Trash  
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/trash">
-                            <FontAwesomeIcon icon={faTrash} className='icon' /> Trash  
+                        <NavLink to="/todo">
+                            <FontAwesomeIcon icon={faList} className='icon' /> Todo List
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/pomodoro">
+                            <FontAwesomeIcon icon={faClock} className='icon' /> Pomodoro Clock 
                         </NavLink>
                     </li>
                 </ul>

@@ -2,7 +2,10 @@ import './App.css';
 import SideNavBar from './components/SideNavBar/SideNavBar'
 import NoteCollection from './components/NoteCollection/NoteCollection'
 import Note from './components/Note/Note'
+import Todo from './components/Todo/Todo'
+import Pomodoro from './components/Pomodoro/Pomodoro'
 import {NotesContext} from './context/context'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -54,6 +57,12 @@ function App() {
                 <Route path="/trash/:id">
                   <Note />
                 </Route>
+            </Route>
+            <Route path="/todo">
+                <Todo />
+            </Route>
+            <Route path="/pomodoro">
+                <Pomodoro />
             </Route>
           </Switch>
         </div>

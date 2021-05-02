@@ -1,5 +1,9 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/auth'
+import dotenv from 'dotenv'
+dotenv.config()
+
 
 // const firebase = require("firebase");
 // // Required for side-effects
@@ -8,14 +12,24 @@ import 'firebase/firestore'
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD1l_kdkMG1g2wBBSmrxHrRBYAFFn8f_qc",
-    authDomain: "notex-d456d.firebaseapp.com",
-    projectId: "notex-d456d",
-    storageBucket: "notex-d456d.appspot.com",
-    messagingSenderId: "728416658224",
-    appId: "1:728416658224:web:d8128abb6c2ebc9f475ef5",
-    measurementId: "G-FZHDGYPZYH"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId:  process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
   };
+
+// export const auth = firebase.auth();
+// const googleProvider = new firebase.auth.GoogleAuthProvider()
+// export const signInWithGoogle = () => {
+//   auth.signInWithPopup(googleProvider).then((res) => {
+//     console.log(res.user)
+//   }).catch((error) => {
+//     console.log(error.message)
+//   })
+// }
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   export default firebase.firestore();

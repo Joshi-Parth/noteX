@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    background: #1A1A1A;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    padding: 25%;
+    cursor: pointer;
+    li{
+        color: white;
+        font-size: 30px;
+    }
+}
