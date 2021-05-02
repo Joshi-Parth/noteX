@@ -1,17 +1,13 @@
-import React, {useContext, useState} from 'react'
+import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDown, faSearch, faPlus, faStar, faTrash, faStickyNote, faInfo, faClock, faList} from '@fortawesome/free-solid-svg-icons'
+import { faAngleDown, faSearch, faPlus,faTrash, faStickyNote, faInfo, faList} from '@fortawesome/free-solid-svg-icons'
 import './SideNavBar.scss'
-import { NavLink , useHistory} from 'react-router-dom'
-import DataService from '../../utils/apiRequests'
-import { NotesContext } from '../../context/context'
+import { NavLink } from 'react-router-dom'
 import firebase from '../../firebase'
 
 const notesRef = firebase.collection('notes');
 
 function SideNavBar() {
-    const notesContext = useContext(NotesContext);
-    const history = useHistory();
     const [error, setError] = useState(null);
     
     
@@ -86,11 +82,6 @@ function SideNavBar() {
                     <li>
                         <NavLink to="/todo">
                             <FontAwesomeIcon icon={faList} className='icon' /> Todo List
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/pomodoro">
-                            <FontAwesomeIcon icon={faClock} className='icon' /> Pomodoro Clock 
                         </NavLink>
                     </li>
                 </ul>

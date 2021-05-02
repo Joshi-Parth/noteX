@@ -5,9 +5,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 
-// const firebase = require("firebase");
-// // Required for side-effects
-// require("firebase/firestore");
+
 
 
 
@@ -18,34 +16,9 @@ const firebaseConfig = {
     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
     messagingSenderId:  process.env.REACT_APP_MESSAGING_SENDER_ID,
     appId: process.env.REACT_APP_APP_ID,
-    measurementId: process.env.REACT_APP_MEASUREMENT_ID
-  };
+};
 
-// export const auth = firebase.auth();
-// const googleProvider = new firebase.auth.GoogleAuthProvider()
-// export const signInWithGoogle = () => {
-//   auth.signInWithPopup(googleProvider).then((res) => {
-//     console.log(res.user)
-//   }).catch((error) => {
-//     console.log(error.message)
-//   })
-// }
-  // Initialize Firebase
+
   firebase.initializeApp(firebaseConfig);
   export default firebase.firestore();
     
-  // var db = firebase.firestore();
-
-  // export default db;
-  
-//   db.collection("users").add({
-//     first: "Ada",
-//     last: "Lovelace",
-//     born: 1815
-// })
-// .then((docRef) => {
-//     console.log("Document written with ID: ", docRef.id);
-// })
-// .catch((error) => {
-//     console.error("Error adding document: ", error);
-// });

@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import TodoForm from './TodoForm'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faStar} from '@fortawesome/free-solid-svg-icons'
 import './Todo.scss'
 import firebase from '../../firebase'
 

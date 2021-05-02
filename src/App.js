@@ -3,7 +3,6 @@ import SideNavBar from './components/SideNavBar/SideNavBar'
 import NoteCollection from './components/NoteCollection/NoteCollection'
 import Note from './components/Note/Note'
 import Todo from './components/Todo/Todo'
-import Pomodoro from './components/Pomodoro/Pomodoro'
 import {NotesContext} from './context/context'
 
 import {
@@ -11,7 +10,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import {  useReducer, useState } from 'react';
+import {  useReducer } from 'react';
 
 const initialState = [];
 
@@ -60,9 +59,6 @@ function App() {
             </Route>
             <Route path="/todo">
                 <Todo />
-            </Route>
-            <Route path="/pomodoro">
-                <Pomodoro />
             </Route>
           </Switch>
         </div>

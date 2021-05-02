@@ -5,14 +5,12 @@ import { NotesContext } from '../../context/context'
 import firebase from '../../firebase'
 import {NavLink, useParams} from 'react-router-dom'
 import {collectionFormatDate} from '../../utils/helpers'
-import Note from '../Note/Note';
 
 
 const notesRef = firebase.collection('notes').orderBy("updatedAt", "desc");
 
 function NoteCollection(props) {
     const {title} = props;
-    const param = useParams();
     const [error, setError] = useState(null);
     const notesContext = useContext(NotesContext);
     const match = useRouteMatch();
